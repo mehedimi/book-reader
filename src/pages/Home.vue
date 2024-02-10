@@ -4,13 +4,27 @@ import { debounce } from "lodash";
 import { Book } from "../types/book.ts";
 import { useHttp } from "../composables/useHttp.ts";
 import { useScroll } from "@vueuse/core";
+import { format } from "date-fns";
 
 const http = useHttp();
 const isLoading = ref(false);
 const books = ref<Book[]>([]);
 let lastId: number | null = null;
 const search = ref("");
-const el = ref<HTMLElement | null>(null);
+
+const bgColors = [
+  "bg-red-300/10",
+  "bg-lime-300/10",
+  "bg-green-300/10",
+  "bg-emerald-300/10",
+  "bg-teal-300/10",
+  "bg-cyan-300/10",
+  "bg-blue-300/10",
+  "bg-indigo-300/10",
+  "bg-purple-300/10",
+  "bg-pink-300/10",
+  "bg-rose-300/10",
+];
 
 async function fetchBooks() {
   if (lastId === -1 || isLoading.value) return;
@@ -22,7 +36,7 @@ async function fetchBooks() {
       params: {
         lastId,
         s: search.value,
-        limit: 6,
+        limit: 16,
       },
     })
     .then(({ data: { data } }) => {
@@ -40,6 +54,7 @@ async function fetchBooks() {
 const { arrivedState } = useScroll(document, {
   throttle: 100,
   behavior: "smooth",
+  offset: { bottom: 100 },
 });
 
 fetchBooks();
@@ -61,7 +76,11 @@ watch(
 </script>
 
 <template>
-  <div ref="el">
+  <div>
+    <h3 class="uppercase mt-3 text-gray-400 text-xs">
+      {{ format(new Date(), "EEEE dd MMMM") }}
+    </h3>
+    <h2 class="text-2xl text-gray-700 my-2 font-semibold">Library</h2>
     <div class="my-4 flex items-center relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -97,26 +116,31 @@ watch(
       <input
         type="search"
         v-model="search"
-        class="w-full border border-gray-300 rounded-3xl pl-10 focus:ring-red-300 focus:border-red-300 text-gray-500"
+        class="w-full border border-gray-300 rounded-3xl py-3 pl-12 focus:ring-emerald-300 focus:border-emerald-300 text-gray-500"
       />
     </div>
-    <div>
-      <h2 class="text-2xl">Latest Reading</h2>
-    </div>
-    <div class="grid grid-cols-2 my-8 gap-4">
+
+    <div class="flex flex-col my-8 gap-5">
       <div
         v-for="book in books"
-        class="text-center p-6 bg-red-300/20 rounded-3xl"
+        class="p-5 rounded-3xl flex gap-x-5"
         :key="book.id"
+        :class="bgColors[book.id % bgColors.length]"
       >
-        <img :src="book.thumbnail" class="rounded-3xl" :alt="book.title" />
-        <h2 class="mb-1 mt-3 font-bold">{{ book.title }}</h2>
-        <p class="text-sm text-gray-600">
-          by {{ book.authors.map((a) => a.name).join(", ") }}
-        </p>
+        <img
+          :src="book.thumbnail"
+          class="rounded-3xl w-1/3"
+          :alt="book.title"
+        />
+        <div>
+          <h2 class="mt-3 font-bold text-gray-700">{{ book.title }}</h2>
+          <p class="my-1.5 text-sm text-gray-600">
+            By {{ book.authors.map((a) => a.name).join(", ") }}
+          </p>
+        </div>
       </div>
     </div>
-    <div class="flex justify-center my-10" v-if="!books.length">
+    <div class="flex justify-center my-10" v-if="isLoading || !books.length">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

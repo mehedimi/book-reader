@@ -13,17 +13,17 @@ let lastId: number | null = null;
 const search = ref("");
 
 const bgColors = [
-  "bg-red-300/10",
-  "bg-lime-300/10",
-  "bg-green-300/10",
-  "bg-emerald-300/10",
-  "bg-teal-300/10",
-  "bg-cyan-300/10",
-  "bg-blue-300/10",
-  "bg-indigo-300/10",
-  "bg-purple-300/10",
-  "bg-pink-300/10",
-  "bg-rose-300/10",
+  "bg-red-300/30",
+  "bg-lime-300/30",
+  "bg-green-300/30",
+  "bg-emerald-300/30",
+  "bg-teal-300/30",
+  "bg-cyan-300/30",
+  "bg-blue-300/30",
+  "bg-indigo-300/30",
+  "bg-purple-300/30",
+  "bg-pink-300/30",
+  "bg-rose-300/30",
 ];
 
 async function fetchBooks() {
@@ -116,7 +116,8 @@ watch(
       <input
         type="search"
         v-model="search"
-        class="w-full border border-gray-300 rounded-3xl py-3 pl-12 focus:ring-emerald-300 focus:border-emerald-300 text-gray-500"
+        class="w-full placeholder-gray-400 border border-gray-300 rounded-3xl py-3 pl-12 focus:ring-emerald-300 focus:border-emerald-300 text-gray-500"
+        placeholder="Search books..."
       />
     </div>
 
@@ -129,7 +130,7 @@ watch(
       >
         <img
           :src="book.thumbnail"
-          class="rounded-3xl w-1/3"
+          class="rounded-3xl w-1/4"
           :alt="book.title"
         />
         <div>

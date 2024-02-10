@@ -13,17 +13,17 @@ let lastId: number | null = null;
 const search = ref("");
 
 const bgColors = [
-  "bg-red-300/30",
-  "bg-lime-300/30",
-  "bg-green-300/30",
-  "bg-emerald-300/30",
-  "bg-teal-300/30",
-  "bg-cyan-300/30",
-  "bg-blue-300/30",
-  "bg-indigo-300/30",
-  "bg-purple-300/30",
-  "bg-pink-300/30",
-  "bg-rose-300/30",
+  "from-red-300/20 via-red-300/50 to-red-300/30",
+  "from-lime-300/20 via-lime-300/50 to-lime-300/30",
+  "from-green-300/20 via-green-300/50 to-green-300/30",
+  "from-emerald-300/20 via-emerald-300/50 to-emerald-300/30",
+  "from-teal-300/20 via-teal-300/50 to-teal-300/30",
+  "from-cyan-300/20 via-cyan-300/50 to-cyan-300/30",
+  "from-blue-300/20 via-blue-300/50 to-blue-300/30",
+  "from-indigo-300/20 via-indigo-300/50 to-indigo-300/30",
+  "from-purple-300/20 via-purple-300/50 to-purple-300/30",
+  "from-pink-300/20 via-pink-300/50 to-pink-300/30",
+  "from-rose-300/20 via-rose-300/50 to-rose-300/30",
 ];
 
 async function fetchBooks() {
@@ -124,18 +124,18 @@ watch(
     <div class="flex flex-col my-8 gap-5">
       <div
         v-for="book in books"
-        class="p-5 rounded-3xl flex gap-x-5"
+        class="p-5 rounded-3xl flex gap-x-5 bg-gradient-to-r"
         :key="book.id"
         :class="bgColors[book.id % bgColors.length]"
       >
         <img
           :src="book.thumbnail"
-          class="rounded-3xl w-1/4"
+          class="rounded-2xl w-1/4"
           :alt="book.title"
         />
         <div>
-          <h2 class="mt-3 font-bold text-gray-700">{{ book.title }}</h2>
-          <p class="my-1.5 text-sm text-gray-600">
+          <h2 class="mt-3 font-bold text-gray-600">{{ book.title }}</h2>
+          <p class="my-1.5 text-sm text-gray-500">
             By {{ book.authors.map((a) => a.name).join(", ") }}
           </p>
         </div>

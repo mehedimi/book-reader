@@ -10,6 +10,7 @@
     "fmt": "prettier src --write"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.19",
     "@vueuse/components": "^10.7.2",
     "@vueuse/core": "^10.7.2",
     "axios": "^1.6.7",

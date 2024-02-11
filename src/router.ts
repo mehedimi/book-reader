@@ -6,6 +6,11 @@ const routes: ReadonlyArray<RouteRecordRaw> = [
     component: () => import("./pages/Home.vue"),
     name: "home.index",
   },
+  {
+    path: "/authors",
+    component: () => import("./pages/Author.vue"),
+    name: "author.index",
+  },
 ];
 
 export const router = createRouter({

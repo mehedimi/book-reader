@@ -4,3 +4,10 @@ export interface Book {
   authors: { name: string }[];
   thumbnail?: string;
 }
+
+export interface Taxonomy {
+  id: number;
+  name: string;
+  slug: string;
+  count: number;
+}

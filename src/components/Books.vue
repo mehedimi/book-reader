@@ -13,7 +13,14 @@
       <div class="flex-1">
         <h2 class="mt-3 font-bold text-gray-600">{{ book.title }}</h2>
         <p class="my-1.5 text-sm text-gray-500">
-          By {{ book.authors.map((a) => a.name).join(", ") }}
+          By
+          <template v-for="(author, index) in book.authors">
+            <router-link
+              :to="{ name: 'author.book', params: { id: author.id } }"
+              :class="colors[book.id % colors.length]"
+              >{{ author.name }}</router-link
+            ><span v-if="book.authors.length - 1 !== index">, </span>
+          </template>
         </p>
       </div>
     </div>
@@ -56,7 +63,7 @@
 
 <script lang="ts" setup>
 import { Book } from "../types/book.ts";
-import { bgColors } from "../utils/colors.ts";
+import { bgColors, colors } from "../utils/colors.ts";
 
 defineProps<{ books: Book[]; isLoading: boolean }>();
 </script>

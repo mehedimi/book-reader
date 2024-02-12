@@ -49,7 +49,7 @@
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+          class="flex min-h-full items-start mt-20 justify-center p-4 text-center"
         >
           <TransitionChild
             as="template"

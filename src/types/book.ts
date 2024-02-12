@@ -1,7 +1,9 @@
+import { Ref } from "vue";
+
 export interface Book {
   id: number;
   title: string;
-  authors: { name: string }[];
+  authors: { id: number; name: string }[];
   thumbnail?: string;
 }
 
@@ -10,4 +12,13 @@ export interface Taxonomy {
   name: string;
   slug: string;
   count: number;
+}
+
+export interface TaxonomyQuery {
+  s: Ref<string>;
+  type: "authors" | "categories";
+}
+
+export interface BookQuery {
+  termId?: number;
 }

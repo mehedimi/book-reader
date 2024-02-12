@@ -11,3 +11,17 @@ export const bgColors = [
   "from-pink-300/20 via-pink-300/50 to-pink-300/30",
   "from-rose-300/20 via-rose-300/50 to-rose-300/20",
 ];
+
+export const colors = [
+  "text-red-400/80",
+  "text-lime-400",
+  "text-green-400",
+  "text-emerald-400/80",
+  "text-teal-400/80",
+  "text-cyan-400/80",
+  "text-blue-400/80",
+  "text-indigo-400/80",
+  "text-purple-400/80",
+  "text-pink-400/80",
+  "text-rose-400/80",
+]

@@ -11,6 +11,11 @@ const routes: ReadonlyArray<RouteRecordRaw> = [
     component: () => import("./pages/Author.vue"),
     name: "author.index",
   },
+  {
+    path: "/authors/:id",
+    component: () => import("./pages/AuthorBooks.vue"),
+    name: "author.book",
+  },
 ];
 
 export const router = createRouter({

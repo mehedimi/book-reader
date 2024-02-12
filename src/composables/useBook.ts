@@ -9,7 +9,7 @@ export function useBook(query?: BookQuery) {
   const books = ref<Book[]>([]);
   const termId = ref<number | undefined>(query?.termId);
 
-  let lastId: number | null = null;
+  let page = 1;
   const s = ref("");
 
   const http = useHttp();
@@ -19,16 +19,15 @@ export function useBook(query?: BookQuery) {
   }
 
   async function fetchBooks() {
-    if (lastId === -1 || isLoading.value) return;
+    if (page === -1 || isLoading.value) return;
 
     isLoading.value = true;
 
     return http
       .get<{ data: Book[] }>("/books", {
         params: {
-          lastId,
+          page,
           s: s.value,
-          limit: 16,
           termId: termId.value,
         },
       })
@@ -36,9 +35,9 @@ export function useBook(query?: BookQuery) {
         books.value = books.value.concat(data);
 
         if (!data.length) {
-          lastId = -1;
+          page = -1;
         } else {
-          lastId = data[data.length - 1].id;
+          page++;
         }
       })
       .finally(() => {
@@ -46,28 +45,36 @@ export function useBook(query?: BookQuery) {
       });
   }
 
-  const { arrivedState } = useScroll(document, {
-    throttle: 100,
-    behavior: "smooth",
-    offset: { bottom: 100 },
-  });
-
   fetchBooks();
 
-  watch(arrivedState, (state) => {
-    if (state.bottom) {
-      fetchBooks();
-    }
-  });
+  if (query?.infinityLoad === true) {
+    const { arrivedState } = useScroll(document, {
+      throttle: 100,
+      behavior: "smooth",
+      offset: { bottom: 100 },
+    });
+
+    watch(arrivedState, (state) => {
+      if (state.bottom) {
+        fetchBooks();
+      }
+    });
+  }
 
   watch(
-    [s, termId],
+    s,
     debounce(() => {
-      lastId = null;
+      page = 1;
       books.value = [];
       fetchBooks();
     }, 500),
   );
 
-  return { lastId, isLoading, books, s, setTermId };
+  watch(termId, () => {
+    page = 1;
+    books.value = [];
+    fetchBooks();
+  });
+
+  return { page, isLoading, books, s, setTermId };
 }

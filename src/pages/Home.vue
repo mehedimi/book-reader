@@ -4,7 +4,7 @@ import Search from "../components/Search.vue";
 import MenuBar from "../components/MenuBar.vue";
 import { useBook } from "../composables/useBook.ts";
 
-const { isLoading, s, books } = useBook();
+const { isLoading, s, books } = useBook({ infinityLoad: true });
 </script>
 
 <template>

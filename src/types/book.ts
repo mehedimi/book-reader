@@ -14,11 +14,16 @@ export interface Taxonomy {
   count: number;
 }
 
-export interface TaxonomyQuery {
+export interface TaxonomiesQuery {
   s: Ref<string>;
   type: "authors" | "categories";
 }
 
+export interface TaxonomyQuery {
+  id: number;
+}
+
 export interface BookQuery {
   termId?: number;
+  infinityLoad?: boolean;
 }

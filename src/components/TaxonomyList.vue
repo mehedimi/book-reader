@@ -7,8 +7,13 @@
       :to="{ name: singleRoute, params: { id: taxonomy.id } }"
     >
       <div class="flex justify-between items-center">
-        <h2 class="text-4xl font-bold">{{ taxonomy.name[0] }}</h2>
-        <span>({{ taxonomy.count }})</span>
+        <h2
+          class="text-4xl font-bold"
+          :class="colors[taxonomy.id % colors.length]"
+        >
+          {{ taxonomy.name[0] }}
+        </h2>
+        <span>{{ taxonomy.count }}</span>
       </div>
       <p class="text-gray-500 mt-6">{{ taxonomy.name }}</p>
     </router-link>
@@ -16,7 +21,7 @@
 </template>
 <script lang="ts" setup>
 import { Taxonomy } from "../types/book.ts";
-import { bgColors } from "../utils/colors.ts";
+import { bgColors, colors } from "../utils/colors.ts";
 
 defineProps<{ taxonomies: Taxonomy[]; singleRoute: "author.book" }>();
 </script>

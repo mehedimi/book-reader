@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import Search from "../components/Search.vue";
 import MenuBar from "../components/MenuBar.vue";
-import { ref } from "vue";
 import TaxonomyList from "../components/TaxonomyList.vue";
-import { useTaxonomy } from "../composables/useTaxonomy.ts";
+import { useTaxonomies } from "../composables/useTaxonomies.ts";
 
 const s = ref("");
 
-const { isLoading, items } = useTaxonomy({ type: "authors", s });
+const { isLoading, items } = useTaxonomies({ type: "authors", s });
 </script>

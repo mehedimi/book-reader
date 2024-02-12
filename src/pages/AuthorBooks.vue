@@ -1,41 +1,27 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { Taxonomy } from "../types/book.ts";
+import { watch } from "vue";
 import MenuBar from "../components/MenuBar.vue";
-import { useHttp } from "../composables/useHttp.ts";
 import { useRoute } from "vue-router";
 import Search from "../components/Search.vue";
 import { useBook } from "../composables/useBook.ts";
 import Books from "../components/Books.vue";
-
-const author = ref<Taxonomy | null>(null);
+import { useTaxonomy } from "../composables/useTaxonomies.ts";
 
 const route = useRoute();
-const http = useHttp();
+const termId = Number(route.params.id);
 
 const { isLoading, s, books, setTermId } = useBook({
-  termId: Number(route.params.id),
+  termId,
 });
 
-function fetchAuthor() {
-  author.value = null;
-
-  http
-    .get<{ data: Taxonomy }>("/authors", {
-      params: {
-        id: route.params.id,
-      },
-    })
-    .then(({ data: { data } }) => {
-      author.value = data;
-    });
-}
-
-fetchAuthor();
+const { taxonomy: author, setTermId: setSingleTermId } = useTaxonomy({
+  id: termId,
+});
 
 watch(route, () => {
-  fetchAuthor()
-  setTermId(Number(route.params.id));
+  const termId = Number(route.params.id);
+  setTermId(termId);
+  setSingleTermId(termId);
 });
 </script>
 

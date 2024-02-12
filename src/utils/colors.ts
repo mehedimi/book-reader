@@ -24,4 +24,4 @@ export const colors = [
   "text-purple-400/80",
   "text-pink-400/80",
   "text-rose-400/80",
-]
+];

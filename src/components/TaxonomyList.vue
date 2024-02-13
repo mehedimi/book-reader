@@ -40,15 +40,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Ref } from "vue";
 import { Taxonomy } from "../types/book.ts";
 import { bgColors, colors } from "../utils/colors.ts";
 import Loader from "./Loader.vue";
 
 defineProps<{
   taxonomies: Taxonomy[];
-  singleRoute: "author.book";
-  isLoading: Ref<boolean>;
+  singleRoute: "author.book" | "category.book";
+  isLoading: boolean;
   emptyMessage: string;
 }>();
 

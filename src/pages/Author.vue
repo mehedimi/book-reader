@@ -6,7 +6,12 @@
       placeholder="Search authors..."
       :is-loading="isLoading"
     />
-    <TaxonomyList :taxonomies="items" single-route="author.book" />
+    <TaxonomyList
+      empty-message="Empty Authors"
+      :is-loading="isLoading"
+      :taxonomies="items"
+      single-route="author.book"
+    />
   </div>
 </template>
 

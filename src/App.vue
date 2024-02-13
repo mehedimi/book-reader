@@ -3,7 +3,11 @@
     <h3 class="uppercase mt-3 text-gray-400 text-xs">
       {{ format(new Date(), "EEEE dd MMMM") }}
     </h3>
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 <script setup lang="ts">

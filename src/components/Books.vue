@@ -2,7 +2,7 @@
   <div class="flex flex-col my-8 gap-5">
     <div
       v-for="book in books"
-      class="p-5 rounded-3xl flex gap-x-5 bg-gradient-to-br"
+      class="p-5 rounded-3xl flex gap-x-5 bg-gradient-to-br font-tiro"
       :key="book.id"
       :class="bgColors[book.id % bgColors.length]"
     >
@@ -13,7 +13,7 @@
       <div class="flex-1">
         <h2 class="mt-3 font-bold text-gray-600">{{ book.title }}</h2>
         <p class="my-1.5 text-sm text-gray-500">
-          By
+          <span class="font-fira">By </span>
           <template v-for="(author, index) in book.authors">
             <router-link
               :to="{ name: 'author.book', params: { id: author.id } }"
@@ -26,21 +26,7 @@
     </div>
   </div>
   <div class="flex justify-center my-10" v-if="isLoading || !books.length">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="w-14 h-14 block text-gray-500 animate-spin"
-      v-if="isLoading"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-      />
-    </svg>
+    <Loader v-if="isLoading" />
     <div v-else class="text-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +50,7 @@
 <script lang="ts" setup>
 import { Book } from "../types/book.ts";
 import { bgColors, colors } from "../utils/colors.ts";
+import Loader from "./Loader.vue";
 
 defineProps<{ books: Book[]; isLoading: boolean }>();
 </script>

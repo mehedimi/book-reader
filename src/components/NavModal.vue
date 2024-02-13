@@ -66,7 +66,8 @@
               <div class="mt-2">
                 <nav>
                   <router-link
-                    class="flex gap-x-3 text-lg text-gray-500 hover:bg-gradient-to-r from-lime-300/50 via-lime-300/60 to-lime-300/30 px-6 py-4 rounded-2xl"
+                    @click="hide"
+                    class="flex gap-x-3 text-lg text-gray-500 hover:bg-gradient-to-r from-lime-200/40 via-lime-200/60 to-lime-200/40 px-6 py-4 rounded-2xl"
                     :to="{ name: 'home.index' }"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +85,8 @@
                     ><span>Library</span></router-link
                   >
                   <router-link
-                    class="flex gap-x-3 text-lg text-gray-500 hover:bg-gradient-to-r from-pink-300/50 via-pink-300/60 to-pink-300/30 px-6 py-4 rounded-2xl"
+                    @click="hide"
+                    class="flex gap-x-3 text-lg text-gray-500 hover:bg-gradient-to-r from-pink-200/40 via-pink-200/60 to-pink-200/40 px-6 py-4 rounded-2xl"
                     :to="{ name: 'author.index' }"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -101,6 +103,27 @@
                       />
                     </svg>
                     <span>Authors</span></router-link
+                  >
+                  <router-link
+                    @click="hide"
+                    class="flex gap-x-3 text-lg text-gray-500 hover:bg-gradient-to-r from-teal-200/40 via-teal-200/60 to-teal-200/40 px-6 py-4 rounded-2xl"
+                    :to="{ name: 'category.index' }"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"
+                      />
+                    </svg>
+
+                    <span>Categories</span></router-link
                   >
                 </nav>
               </div>
@@ -124,6 +147,10 @@ import {
 const isOpen = ref(false);
 
 function closeMenu() {
+  isOpen.value = false;
+}
+
+function hide() {
   isOpen.value = false;
 }
 </script>

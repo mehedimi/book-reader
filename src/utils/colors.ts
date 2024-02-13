@@ -1,15 +1,15 @@
 export const bgColors = [
-  "from-red-300/20 via-red-300/50 to-red-300/20",
-  "from-lime-300/20 via-lime-300/50 to-lime-300/20",
-  "from-green-300/20 via-green-300/50 to-green-300/20",
-  "from-emerald-300/20 via-emerald-300/50 to-emerald-300/20",
-  "from-teal-300/20 via-teal-300/50 to-teal-300/20",
-  "from-cyan-300/20 via-cyan-300/50 to-cyan-300/20",
-  "from-blue-300/20 via-blue-300/50 to-blue-300/20",
-  "from-indigo-300/20 via-indigo-300/50 to-indigo-300/20",
-  "from-purple-300/20 via-purple-300/50 to-purple-300/20",
-  "from-pink-300/20 via-pink-300/50 to-pink-300/30",
-  "from-rose-300/20 via-rose-300/50 to-rose-300/20",
+  "from-red-100/30 via-red-100/60 to-red-100/30",
+  "from-lime-100/30 via-lime-100/60 to-lime-100/30",
+  "from-green-100/30 via-green-100/60 to-green-100/30",
+  "from-emerald-100/30 via-emerald-100/60 to-emerald-100/30",
+  "from-teal-100/30 via-teal-100/60 to-teal-100/30",
+  "from-cyan-100/30 via-cyan-100/60 to-cyan-100/30",
+  "from-blue-100/30 via-blue-100/60 to-blue-100/30",
+  "from-indigo-100/30 via-indigo-100/60 to-indigo-100/30",
+  "from-purple-100/30 via-purple-100/60 to-purple-100/30",
+  "from-pink-100/30 via-pink-100/60 to-pink-100/30",
+  "from-rose-100/30 via-rose-100/60 to-rose-100/30",
 ];
 
 export const colors = [

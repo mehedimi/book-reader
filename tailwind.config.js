@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         fira: "'Fira Sans', sans-serif",
+        tiro: '"Tiro Bangla", serif',
       },
     },
   },

@@ -14,7 +14,7 @@ const { isLoading, s, books, setTermId } = useBook({
   termId,
 });
 
-const { taxonomy: author, setTermId: setSingleTermId } = useTaxonomy({
+const { taxonomy: category, setTermId: setSingleTermId } = useTaxonomy({
   id: termId,
 });
 
@@ -27,7 +27,7 @@ watch(route, () => {
 
 <template>
   <div>
-    <MenuBar :title="author ? author.name : 'Loading...'" />
+    <MenuBar :title="category ? category.name : 'Loading...'" />
     <Search v-model="s" :is-loading="isLoading" />
     <Books :books="books" :is-loading="isLoading" />
   </div>
